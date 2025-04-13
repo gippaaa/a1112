@@ -1,0 +1,91 @@
+Dokumentasi Aplikasi Kalkulator Diskon Sederhana
+
+
+---
+
+1. Deskripsi Singkat
+
+Aplikasi ini adalah kalkulator diskon berbasis web yang dibuat menggunakan HTML, Tailwind CSS, dan JavaScript. Pengguna dapat memasukkan harga asli dan persentase diskon, lalu aplikasi akan menghitung secara otomatis besarnya potongan dan harga akhir setelah diskon. Validasi dilakukan untuk memastikan bahwa nilai diskon tidak melebihi 100%, dan aplikasi memberikan peringatan jika terjadi pelanggaran.
+
+
+---
+
+2. Struktur dan Penjelasan Kode
+
+a. Tampilan HTML
+
+Struktur halaman dibuat responsif dan estetik menggunakan Tailwind CSS. Elemen utama meliputi:
+
+Form input Harga Asli dan Diskon (%)
+
+Tombol “Hitung” untuk memicu perhitungan
+
+Area hasil yang menampilkan:
+
+Harga Asli
+
+Nilai Diskon
+
+Harga Setelah Diskon
+
+
+
+HTML utama:
+
+<form id="discountForm">
+    ...
+</form>
+<div id="result">...</div>
+
+
+---
+
+b. Script JavaScript
+
+Fungsi JavaScript terdiri dari dua bagian utama:
+
+1. formatNumber(input)
+Memformat input harga agar menampilkan titik sebagai pemisah ribuan, mengikuti format Rupiah (Indonesia).
+
+
+2. calculateDiscount()
+Fungsi utama yang mengambil nilai dari form, memvalidasi diskon tidak melebihi 100%, menghitung jumlah diskon, dan memperbarui tampilan hasil dalam format mata uang.
+
+
+
+Contoh logika:
+
+const discountAmount = originalPrice * (discountPercentage / 100);
+const finalPrice = originalPrice - discountAmount;
+
+Jika diskon > 100:
+
+alert("Diskon tidak boleh lebih dari 100%");
+
+
+---
+
+3. Validasi dan Interaksi
+
+Validasi diskon maksimum 100% dilakukan secara interaktif.
+
+Input harga otomatis diformat saat pengguna mengetik.
+
+Semua perhitungan dan output dilakukan secara real-time di sisi klien (client-side), tanpa perlu reload halaman.
+
+
+
+---
+
+4. Output Hasil
+
+Hasil yang ditampilkan mencakup:
+
+Harga Asli dalam format Rp
+
+Besar Potongan Diskon
+
+Harga Akhir setelah diskon
+
+
+Output ditampilkan di elemen <div id="result"> secara dinamis.
