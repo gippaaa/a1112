@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Diskon Sederhana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-green-200 to-purple-400 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-sm p-6 bg-purple-700 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-white text-center mb-4">Kalkulator Diskon</h1>
+        <form id="discountForm">
+            <div class="mb-4">
+                <label class="block text-white mb-2" for="originalPrice">Harga Asli:</label>
+                <input class="w-full p-2 border border-gray-300 rounded" type="text" id="originalPrice" value="0" oninput="formatNumber(this)">
+            </div>
+            <div class="mb-4">
+                <label class="block text-white mb-2" for="discountPercentage">Diskon (%):</label>
+                <input class="w-full p-2 border border-gray-300 rounded" type="text" id="discountPercentage" value="0">
+            </div>
+            <button type="button" onclick="calculateDiscount()" class="w-full p-2 bg-purple-400 text-white font-bold rounded">Hitung</button>
+        </form>
+        <div id="result" class="mt-4 p-4 bg-purple-800 text-white rounded">
+            <p><strong>Harga Asli:</strong> Rp 0</p>
+            <p><strong>Diskon:</strong> Rp 0</p>
+            <p><strong>Harga Setelah Diskon:</strong> Rp 0</p>
+        </div>
+    </div>
+
+    <script>
+        function formatNumber(input) {
+            let value = input.value.replace(/\./g, '');
+            if (value === '' || isNaN(value)) {
+                input.value = '';
+            } else {
+                input.value = parseInt(value).toLocaleString('id-ID');
+            }
+        }
+
+        function calculateDiscount() {
+            const originalPrice = parseFloat(document.getElementById('originalPrice').value.replace(/\./g, '')) || 0;
+            const discountPercentage = parseFloat(document.getElementById('discountPercentage').value) || 0;
+
+            if (discountPercentage > 100) {
+                alert("Diskon tidak boleh lebih dari 100%");
+                return;
+            }
+
+            const discountAmount = originalPrice * (discountPercentage / 100);
+            const finalPrice = originalPrice - discountAmount;
+
+            document.getElementById('result').innerHTML = `
+                <p><strong>Harga Asli:</strong> Rp ${originalPrice.toLocaleString('id-ID')}</p>
+                <p><strong>Diskon:</strong> Rp ${discountAmount.toLocaleString('id-ID')}</p>
+                <p><strong>Harga Setelah Diskon:</strong> Rp ${finalPrice.toLocaleString('id-ID')}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
